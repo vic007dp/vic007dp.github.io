@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Routing angular</title>
+	<script src="scripts/angular.min.js"></script>
+	<script src="scripts/angular-route.min.js"></script>
+</head>
+<body ng-app="MyApp">
+<p><a href="#/!">Main</a></p>
+ <a href="#!red">Red</a>
+<a href="#!green">Green</a>
+<a href="#!blue">Blue</a>
+<div ng-view></div>
+<script>
+var app = angular.module("MyApp", ["ngRoute"]);
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl : "main.htm",
+        controller: "mainCtrl"
+    })
+    .when("/red", {
+        templateUrl : "red.htm",
+        controller: "redCtrl"
+    })
+    .when("/green", {
+        templateUrl : "green.htm",
+        controller: "greenCtrl"
+    })
+    .when("/blue", {
+        templateUrl : "blue.htm",
+        controller: "blueCtrl"
+    });
+});
+app.controller("mainCtrl", function($scope){
+	$scope.msg = "I am main";
+});
+app.controller("redCtrl", function($scope){
+	$scope.msg = "I am red";
+});
+app.controller("greenCtrl", function($scope){
+	$scope.msg = "I am green";
+});
+app.controller("blueCtrl", function($scope){
+	$scope.msg = "I am blue";
+});
+</script>
+</body>
+</html>

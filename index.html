@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular</title>
+	<script src="scripts/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+	<div ng-include="'my.htm'"></div>
+	<input type="text" ng-model="name">
+	<p>{{name}}</p>
+	<p>{{25*6}}</p>
+	<div ng-controller="myCtrl">
+	<input type="text" ng-model="myCol" style="background-color: {{myCol}}">
+	<ul ng-repeat="x in spisok">
+    		<li>{{x}}</li>
+    	</ul>	
+    </div>
+    <div ng-controller="myCtrl1">
+    	<ul ng-repeat="x in spisok | uppercase">
+    		<li>{{x.name +','+ x.familia}}</li>
+    	</ul>
+    	<p>{{price | currency}}</p>
+    	<input type="text" ng-model="test">
+    	<ul ng-repeat="x in names | filter: test">
+    		<li>{{x}}</li>
+    	</ul>
+    </div>
+	<script>
+		let app = angular.module("myApp",[]);
+		app.controller("myCtrl", function($scope){
+			$scope.myCol = "blue";
+			$scope.spisok = ["Vasya", "petya","Joe"];
+		});
+		app.controller("myCtrl1", function($scope){
+			$scope.spisok = [{
+							name: "Vasya",
+							familia: "Vasin"
+							},
+							{
+							name: "Petya",
+							familia: "Petin"
+							},
+							{
+							name: "Joe",
+							familia: "Foo"
+							}];
+			$scope.price = 200;
+			$scope.names = [
+				'Jani',
+		        'Carl',
+		        'Margareth',
+		        'Hege',
+		        'Joe',
+		        'Gustav',
+		        'Birgit',
+		        'Mary',
+		        'Kai'];
+		});
+	</script>
+</body>
+</html>
